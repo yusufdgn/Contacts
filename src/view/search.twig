@@ -1,0 +1,50 @@
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Anasayfa</a> <a href="#" class="current"><?php echo "$q için arama" ?> </a> </div>
+        <h1>Arama Sonuçları</h1>
+    </div>
+    <div id="yazdir"></div>
+
+    <div class="container-fluid">
+        <hr>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                        <h5>Kişiler</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered data-table" id="myDataTable">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>İsim Soyisim</th>
+                                <th>Numara</th>
+                                <th>Fax</th>
+                                <th>İşlemler</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+    {% for result in search %}
+    <tr>
+        <td>{{ result.id }}</td>
+        <td>{{ result.name }} {{ result.surname }}</td>
+        <td>{{ result.phone }}</td>
+        <td>{{ result.fax }}</td>
+        <td><a href="/viewperson/{{ result.id }}"><button class="btn btn-success"> <span class="icon icon-eye-open"></span></button></a>
+            <a href="/editperson/{{ result.id }}"><button class="btn btn-warning"> <span class="icon icon-edit"></span></button></a>
+            <a href="/deleteperson/{{ result.id }}"><button class="btn btn-danger"> <span class="icon icon-trash"></span></button></a>
+        </td>
+    </tr>
+    {% endfor %}
+<?php } ?>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+

@@ -1,0 +1,47 @@
+    <div id="content">
+        <div id="content-header">
+            <div id="breadcrumb"> <a href="index.php" title="Anasayfaya dön" class="tip-bottom"><i class="icon-home"></i> Anasayfa</a> <a href="#" class="current">{{ person.name }} {{ person.surname }} Kişisini Sil</a> </div>
+        </div>
+        <div class="container-fluid">
+            <hr>
+            <div class="row-fluid">
+                <div class="widget-box">
+                    <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
+                        <h5>{{ person.name }} {{ person.surname }}  Adlı Rehber Kişisini Silmek İstiyormusunuz ?</h5>
+                    </div>
+                    <div class="widget-content">
+                        <div id="yazdir">
+                        </div>
+                        <form id="veri-formu" method="POST">
+                          <input type="hidden" value="{{ person.id }}" name="id">
+                        </form>
+                            <button onclick="gonder()" id="butonekle" class="btn btn-success btn-large">Kişiyi Sil</button>
+                        <button onclick="geridon()" class="btn btn-danger btn-large">Hayır</button>
+                        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+                        <script>
+                            function gonder() {
+                                jQuery.ajax({
+                                    type: 'POST',//Bu kısım POST ve GET değerlerinden birini alabilir
+                                    url: '/check/deleteperson',//Verinin gönderileceği sayfa
+                                    data: $('#veri-formu').serialize(),
+                                    error:function(){ $('#yazdir').html("Sistemsel bir hata algılandı."); }, //Hata veri
+                                    success: function(veri) {
+                                        $('#yazdir').html(veri);
+
+                                        if(document.getElementById("kod").innerHTML === "ok")
+                                        {
+                                            document.getElementById("butonekle").style.display = "none";
+                                            zamanla();
+                                        }
+                                    } //Başarılı
+                                });
+                            }
+
+                            function geridon(){
+                                window.setTimeout(function(){window.location.href = "/person/"},0);
+                            }
+                        </script>
+
+                    </div>
+                </div>
+            </div></div></div>

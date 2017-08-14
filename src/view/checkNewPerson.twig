@@ -1,0 +1,23 @@
+<div id="code" style="display:none;">{{ status }}</div>
+{% if status=="ok" %}
+    <div  class="alert alert-success alert-block">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <h4 class="alert-heading"> Kişi eklendi </h4>
+        Kişi eklendi, yönlendiriliyorsunuz...
+    </div>
+{% elseif status=="warning" %}
+    {% for warning in data %}
+        <div  class="alert alert-warning alert-block">
+            <a class="close" data-dismiss="alert" href="#">×</a>
+            <h4 class="alert-heading"> {{ warning.message }}</h4>
+            Kişi Eklenemedi..
+        </div>
+    {% endfor %}
+{% else %}
+    <div  class="alert alert-danger alert-block">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <h4 class="alert-heading"> Kişi eklenemedi</h4>
+        Kişi Eklenemedi..
+    </div>
+{% endif %}
+

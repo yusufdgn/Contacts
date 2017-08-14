@@ -1,0 +1,58 @@
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Anasayfa</a> <a href="#" class="current">Kişiler</a> </div>
+        <h1>Kişiler</h1>
+    </div>
+    <div id="yazdir"></div>
+
+    <div class="container-fluid">
+        <hr>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                        <h5>Kişiler</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered data-table" id="myDataTable">
+                            <thead>
+                            <tr>
+                                <th class="span1">ID</th>
+                                <th class="span2">İsim Soyisim</th>
+                                <th class="span2">Telefon 1</th>
+                                <th class="span2">Faks 1</th>
+                                <th class="span6">Not</th>
+                                <th class="span2">İşlemler</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% for person in persons %}
+                                    <tr>
+                                        <td>{{ person.personId }}</td>
+                                        <td>{{ person.name }} {{ person.surname }}</td>
+                                        <td>{{ person.phone }}</td>
+                                        <td>{{ person.fax }}</td>
+                                        <td>{{ person.note }}</td>
+                                        <td><a href="/viewperson/{{ person.personId }}">
+                                                <button class="btn btn-success"><span class="icon icon-eye-open"></span>
+                                                </button>
+                                            </a>
+                                            <a href="/editperson/{{ person.personId }}">
+                                                <button class="btn btn-warning"><span class="icon icon-edit"></span>
+                                                </button>
+                                            </a>
+                                            <a href="/deleteperson/{{ person.personId }}">
+                                                <button class="btn btn-danger"><span class="icon icon-trash"></span>
+                                                </button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

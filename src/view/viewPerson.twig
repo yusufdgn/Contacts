@@ -1,0 +1,73 @@
+
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="index.php" title="Anasayfaya dön" class="tip-bottom"><i class="icon-home"></i> Anasayfa</a> <a href="#" class="current">{{ person.name }} {{ person.surname }} Bilgileri </a> </div>
+    </div>
+    <div class="container-fluid">
+        <hr>
+        <div class="row-fluid">
+<div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
+            <h5>{{ person.name }} {{ person.surname }}  Bilgileri</h5>
+          </div>
+          <div class="widget-content">
+            <div class="todo">
+              <ul>
+                <li class="clearfix">
+                    <div class="txt">
+                        <div class="goruntulelabel"> İsim </div>
+                        <div class="goruntulebaslik">{{ person.name }}</div>
+                    </div>
+                </li>
+                  <li class="clearfix">
+                      <div class="txt">
+                          <div class="goruntulelabel"> Soyisim </div>
+                          <div class="goruntulebaslik">{{ person.surname }}</div>
+                      </div>
+                  </li>
+                  <li class="clearfix">
+                      <div class="txt">
+                          <div class="goruntulelabel"> Email </div>
+                          <div class="goruntulebaslik">{{ person.email }}</div>
+                      </div>
+                  </li>
+                  <li class="clearfix">
+                      <div class="txt">
+                          <div class="goruntulelabel"> Website </div>
+                          <div class="goruntulebaslik">{{ person.website }}</div>
+                      </div>
+                  </li>
+                  {% for phone in phones %}
+                  <li class="clearfix">
+                      <div class="txt">
+                          <div class="goruntulelabel"> Telefon </div>
+                          <div class="goruntulebaslik">{{ phone.phoneNumber }}</div>
+                      </div>
+                  </li>
+                  {% endfor %}
+
+                  {% for fx in fax %}
+                      <li class="clearfix">
+                          <div class="txt">
+                              <div class="goruntulelabel"> Fax </div>
+                              <div class="goruntulebaslik">{{ fx.faxNumber }}</div>
+                          </div>
+                      </li>
+                  {% endfor %}
+                  <li class="clearfix">
+                      <div class="txt">
+                          <div class="goruntulelabel"> Adres </div>
+                          <div class="goruntuleadres">{{ person.adress }}</div>
+                      </div>
+                  </li>
+                  <li class="clearfix">
+                      <div class="txt">
+                          <div class="goruntulelabel"> Not </div>
+                          <div class="goruntulenot">{{ person.note }}</div>
+                      </div>
+                  </li>
+              </ul>
+            </div>
+          </div>
+</div>
+        </div></div></div>

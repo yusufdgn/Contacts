@@ -1,0 +1,174 @@
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="index.php" title="Anasayfaya dön" class="tip-bottom"><i class="icon-home"></i> Anasayfa</a> <a href="index.php?islem=kisiekle" class="current">Kişi Ekle</a> </div>
+        <h1>Yeni Kişi Ekle</h1>
+    </div>
+    <div class="container-fluid">
+        <hr>
+        <div id="yazdir"></div>
+        <div class="row-fluid">
+            <div class="widget-box">
+                <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>Yeni Kişi Ekle</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <form id="veri-formu" class="form-horizontal">
+
+                        <div class="control-group">
+                            <label class="control-label">İsim :</label>
+                            <div class="controls">
+                                <input type="text" name="name" class="span11" placeholder="İsminizi giriniz.." />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">Soyisim :</label>
+                            <div class="controls">
+                                <input type="text" name="surname" class="span11" placeholder="Soyisminizi giriniz.." />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">Email :</label>
+                            <div class="controls">
+                                <input type="text" name="email" class="span11" placeholder="Soyisminizi giriniz.." />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">Web Sitesi :</label>
+                            <div class="controls">
+                                <input type="text" name="website" class="span11" placeholder="Soyisminizi giriniz.." />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">Kişi Grupları</label>
+                            <div class="controls">
+                                <select multiple name="groups[]" >
+                                    {% for group in groups %}
+                                        <option value="{{ group.id }}">{{ group.groupName }}</option>
+                                    {% endfor %}                                </select>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">Tel 1 :</label>
+                            <div class="controls">
+                                <input type="tel" name="phones[]" class="span11" placeholder="1.Telefon Numaranızı Giriniz" />
+                            </div>
+                        </div>
+
+                        <div class="input_fields_wrap">
+                        </div>
+
+
+                        <div class="control-group">
+                            <label class="control-label">Faks 1:</label>
+                            <div class="controls">
+                                <input type="tel" name="fax[]" class="span11" placeholder="1.Fax Numaranızı Giriniz" />
+                            </div>
+                        </div>
+
+                        <div class="input_fields_wrap2">
+                        </div>
+
+
+                        <div class="control-group">
+                            <label class="control-label">Adres</label>
+                            <div class="controls">
+                                <textarea class="span11" name="address" placeholder="Adresinizi giriniz" ></textarea>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">Not</label>
+                            <div class="controls">
+                                <textarea class="textarea_editor span11" name="note" placeholder="Not Giriniz"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <div class="controls">
+                                <button class="add_field_button" >Telefon Ekle</button>
+                                <button class="add_field_button2" >Faks Ekle</button>
+                            </div>
+                        </div>
+
+                    </form>
+                    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+                    <div class="form-actions">
+                        <button onclick="gonder()" id="butonekle" class="btn btn-success">Kişiyi Ekle</button>
+                    </div>
+
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    var max_fields      = 5; //maximum input boxes allowed
+                    var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+                    var add_button      = $(".add_field_button"); //Add button ID
+
+                    var x = 1; //initlal text box count
+                    $(add_button).click(function(e){ //on add input button click
+                        e.preventDefault();
+                        if(x < max_fields){ //max input box allowed
+                            x++; //text box increment
+                            $(wrapper).append('<div class="control-group"><label class="control-label">Tel '+x+': </label><div class="controls"><input type="tel" name="phones[]" class="span11" placeholder="'+x +'.Telefon Numaranızı Giriniz" /></div><a style="position:relative; top:-35px; left:87%; font-weight: bold; font-size:13px;" href="#" class="remove_field"> Bu Alanı Sil</a></div>'); //add input box
+                        }
+                    });
+
+                    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+                        e.preventDefault(); $(this).parent('div').remove(); x--;
+                    })
+                });
+            </script>
+
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    var max_fields      = 5; //maximum input boxes allowed
+                    var wrapper         = $(".input_fields_wrap2"); //Fields wrapper
+                    var add_button      = $(".add_field_button2"); //Add button ID
+
+                    var x = 1; //initlal text box count
+                    $(add_button).click(function(e){ //on add input button click
+                        e.preventDefault();
+                        if(x < max_fields){ //max input box allowed
+                            x++; //text box increment
+                            $(wrapper).append('<div class="control-group"><label class="control-label">Faks '+x+': </label><div class="controls"><input type="tel" name="fax[]" class="span11" placeholder="'+x +'.Faks Numarasını giriniz" /></div><a href="#" style="position:relative; top:-35px; left:87%; font-weight: bold; font-size:13px; " class="remove_field2"> Bu Alanı Sil</a></div>'); //add input box
+                        }
+                    });
+
+                    $(wrapper).on("click",".remove_field2", function(e){ //user click on remove text
+                        e.preventDefault(); $(this).parent('div').remove(); x--;
+                    })
+                });
+            </script>
+
+            <script>
+                function gonder() {
+                    jQuery.ajax({
+                        type: 'POST',//Bu kısım POST ve GET değerlerinden birini alabilir
+                        url: '/check/addperson',//Verinin gönderileceği sayfa
+                        data: $('#veri-formu').serialize(),
+                        error:function(){ $('#yazdir').html("Sistemsel bir hata algılandı."); }, //Hata veri
+                        success: function(veri) {
+                            $('#yazdir').html(veri);
+
+                            if(document.getElementById("code").innerHTML === "ok")
+                            {
+                                document.getElementById("butonekle").style.display = "none";
+                                zamanla();
+                            }
+                        } //Başarılı
+                    });
+                }
+
+                function zamanla(){
+                    window.setTimeout(function(){window.location.href = "/index"},1000);
+                }
+            </script>
+        </div>
+    </div></div>

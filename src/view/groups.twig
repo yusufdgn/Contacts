@@ -1,0 +1,44 @@
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Anasayfa</a> <a href="#" class="current">Gruplar</a> </div>
+        <h1>Gruplar</h1>
+    </div>
+    <div id="yazdir"></div>
+    <div class="container-fluid">
+        <hr>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                        <h5>Kişiler</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered data-table" id="myDataTable">
+                            <thead>
+                            <tr>
+                                <th class="span1">ID</th>
+                                <th class="span2">Gruplar</th>
+                                <th class="span2">İşlemler</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% for group in groups %}
+                                <tr>
+                                    <td>{{ group.id }}</td>
+                                    <td><b><a href="/group/{{ group.leftIndex }}/{{ group.rightIndex }}">{{ group.groupName }}</a></b>
+                                        <div style="float:right"><a href="/group-person/{{ group.id }}">Kişiler</a></div></div>
+                                    </td>
+                                    <td>
+                                          <a href="/group/edit/{{ group.id }}"><button class="btn btn-warning"> <span class="icon icon-edit"></span></button></a>
+                                          <a href="/group/delete/{{ group.id }}"><button class="btn btn-danger"> <span class="icon icon-trash"></span></button></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

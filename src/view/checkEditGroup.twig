@@ -1,0 +1,15 @@
+<div id="code" style="display:none;">{{ status }}</div>
+{% if status=="ok" %}
+    <div  class="alert alert-success alert-block">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <h4 class="alert-heading"> Grup Düzenlendi </h4>
+        Grup Düzenlendi.
+    </div>
+{% else %}
+    <div  class="alert alert-danger alert-block">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <h4 class="alert-heading"> Grup Düzenlenemedi  </h4>
+        Grup Düzenlenemedi..
+    </div>
+{% endif %}
+

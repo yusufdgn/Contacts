@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Matrix Admin</title>
+    <meta http-equiv="Content-Type" content="text/HTML; charset=utf-8" />
+    <link rel="stylesheet" href="{{ server }}/design/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ server }}/design/css/uniform.css" />
+    <link rel="stylesheet" href="{{ server }}/design/css/extra.css" />
+    <link rel="stylesheet" href="{{ server }}/design/css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="{{ server }}/design/css/fullcalendar.css" />
+    <link rel="stylesheet" href="{{ server }}/design/css/matrix-style.css" />
+    <link rel="stylesheet" href="{{ server }}/design/css/matrix-media.css" />
+    <link href="{{ server }}/design/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ server }}/design/css/jquery.gritter.css" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ server }}/design/css/bootstrap-wysihtml5.css" />
+    <link rel="stylesheet" href="{{ server }}/design/css/select2.css" />
+</head>
+<body>
+
+<!--Header-part-->
+<div id="header">
+    <h1><a href="index.php">Rehber</a></h1>
+</div>
+<!--close-Header-part-->
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Hoşgeldin, {{ userinfo.name }} {{ userinfo.surname }}</span></a></li>
+        <li class=""><a title="" href="/logout"><i class="icon icon-share-alt"></i> <span class="text">Çıkış Yap!</span></a></li>
+    </ul>
+</div>
+<!--close-top-Header-menu-->
+<!--start-top-serch-->
+<div id="search">
+    <form action="/search" method="POST">
+        <input type="text" name="q" placeholder="Arama Şeysi"/>
+        <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
+    </form>
+
+</div>
+<!--close-top-serch-->

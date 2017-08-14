@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Rehberim </title><meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ server }}/design/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ server }}/design/css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="{{ server }}/design/css/matrix-login.css" />
+    <link href="{{ server }}/design/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+<div id="loginbox">
+    <form id="loginform" class="form-vertical" method="POST">
+        <div class="control-group normal_text"> <h3><img src="{{ server }}/design/img/logo.png" alt="Logo" /></h3></div>
+        <div class="control-group">
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on bg_lg"><i class="icon-user"> </i></span><input type="text" name="username" placeholder="Kullanıcı Adınız" />
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on bg_ly"><i class="icon-lock"></i></span><input type="password" name="password" placeholder="Şifreniz.." />
+                </div>
+            </div>
+        </div>
+        <div class="form-actions">
+            <span class="pull-left"><a href="#" class="flip-link btn btn-info" id="to-recover">Şifremi Unuttum?</a></span>
+            <span class="pull-left"><a href="#" class="flip-link btn btn-info" id="to-register">Kayıt Ol?</a></span>
+            <span onclick="gonder()" class="pull-left flip-link btn btn-info">Giris Yap</span>
+        </div>
+    </form>
+
+    <form id="recoverform" action="#" class="form-vertical">
+        <p class="normal_text">Şifrenizi yenilemek için kayıtlı mail adresinizi giriniz..</p>
+
+        <div class="controls">
+            <div class="main_input_box">
+                <span class="add-on bg_lo"><i class="icon-envelope"></i></span><input type="text" placeholder="E-mail adresiniz" />
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <span class="pull-left"><a href="#" class="flip-link btn btn-success" id="to-login">&laquo; Girişe Geri Dön</a></span>
+            <span class="pull-right"><a class="btn btn-info"/> Yenile </a></span>
+        </div>
+    </form>
+
+    <form id="registerform" method="POST" class="form-vertical" style="display:none;">
+        <p class="normal_text">Kayıt olma formu</p>
+
+        <div class="controls">
+            <div class="main_input_box">
+                <span class="add-on bg_lo"><i class="icon-user"></i></span><input type="text" name="name" placeholder="İsim" /><br>
+                <span class="add-on bg_lo"><i class="icon-user"></i></span><input type="text" name="surname" placeholder="Soyisim" /><br>
+                <span class="add-on bg_lo"><i class="icon-envelope"></i></span><input type="text" name="email" placeholder="E-Mail Adresiniz" /><br>
+                <span class="add-on bg_lo"><i class="icon-user"></i></span><input type="text" name="username" placeholder="Kullanıcı Adınız" /><br>
+                <span class="add-on bg_lo"><i class="icon-briefcase"></i></span><input type="password" name="password" placeholder="Şifreniz" />
+
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <span class="pull-left"><a href="#" class="flip-link btn btn-success" id="to-login2">&laquo; Girişe Geri Dön</a></span>
+            <span onclick="register()" class="pull-right"><a class="btn btn-info"/>Kaydı Tamamla!</a></span>
+        </div>
+    </form>
+
+
+    <div id="yazdir">
+    </div>
+
+</div>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+    function gonder() {
+        jQuery.ajax({
+            type: 'POST',//Bu kısım POST ve GET değerlerinden birini alabilir
+            url: '/check/logon',//Verinin gönderileceği sayfa
+            data: $('#loginform').serialize(),
+            error:function(){ $('#yazdir').html("Sistemsel bir hata algılandı."); }, //Hata veri
+            success: function(veri) {
+                if(veri==="ok"){
+                    $('#yazdir').html("<div  class=\"alert alert-success alert-block\">\n" +
+                        "    <a class=\"close\" data-dismiss=\"alert\" href=\"#\">×</a>\n" +
+                        "    <h4 class=\"alert-heading\"> Giriş Başarılı </h4>\n" +
+                        "        Giriş Yapıldı, Şimdi Yönlendiriliyorsunuz..\n" +
+                        "</div>");
+                    zamanla();
+                }
+                if(veri==="error"){
+                    $('#yazdir').html("<div  class=\"alert alert-danger alert-block\">\n" +
+                        "        <a class=\"close\" data-dismiss=\"alert\" href=\"#\">×</a>\n" +
+                        "        <h4 class=\"alert-heading\"> Giriş Başarısız </h4>\n" +
+                        "        Giriş Yapılamadı, bilgilerinizi kontrol edip tekrar deneyin.\n" +
+                        "    </div>");
+                }
+            } //Başarılı
+        });
+    }
+
+    function zamanla(){
+        window.setTimeout(function(){window.location.href = "/index"},3000);
+    }
+</script>
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+    function register() {
+        jQuery.ajax({
+            type: 'POST',//Bu kısım POST ve GET değerlerinden birini alabilir
+            url: '/check/register',//Verinin gönderileceği sayfa
+            data: $('#registerform').serialize(),
+            error:function(){ $('#yazdir').html("Sistemsel bir hata algılandı."); }, //Hata veri
+            success: function(veri) {
+                if(veri==="ok"){
+                    $('#yazdir').html("<div  class=\"alert alert-success alert-block\">\n" +
+                        "    <a class=\"close\" data-dismiss=\"alert\" href=\"#\">×</a>\n" +
+                        "    <h4 class=\"alert-heading\"> Kayıt Başarılı </h4>\n" +
+                        "        Kayıt başarılı, şimdi giriş yapabilirsiniz.\n" +
+                        "</div>");
+                    zamanla();
+                }
+                if(veri==="error"){
+                    $('#yazdir').html("<div  class=\"alert alert-danger alert-block\">\n" +
+                        "        <a class=\"close\" data-dismiss=\"alert\" href=\"#\">×</a>\n" +
+                        "        <h4 class=\"alert-heading\"> Kayıt Başarısız </h4>\n" +
+                        "        Kaydınız yapılamadı bir hata oluştu, lütfen tekrar deneyiniz..\n" +
+                        "    </div>");
+                }
+
+            } //Başarılı
+        });
+    }
+
+    function zamanla(){
+        window.setTimeout(function(){window.location.href = "/index"},3000);
+    }
+</script>
+
+
+<script src="{{ server }}/design/js/jquery.min.js"></script>
+<script src="{{ server }}/design/js/matrix.login.js"></script>
+</body>
+
+</html>

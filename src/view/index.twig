@@ -1,0 +1,46 @@
+<!--main-container-part-->
+<div id="content">
+    <!--breadcrumbs-->
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="index.php" title="Anasayfaya dön" class="tip-bottom"><i class="icon-home"></i> Anasayfa</a></div>
+    </div>
+    <!--End-breadcrumbs-->
+
+    <!--Action boxes-->
+    <div class="container-fluid">
+        <div class="quick-actions_homepage">
+            <ul class="quick-actions">
+                <li class="bg_lb"> <a href="/index"> <i class="icon-dashboard"></i>Anasayfa </a> </li>
+                <li class="bg_lg"> <a href="/person/new"> <i class="icon-user"></i> Yeni Kişi </a> </li>
+                <li class="bg_lg"> <a href="/group/new"> <i class="icon-group"></i> Yeni Grup </a> </li>
+                <li class="bg_lo"> <a href="/person"> <i class="icon-user"></i><span class="label label-success">{{personScore}}</span> Kişiler </a> </li>
+                <li class="bg_lo"> <a href="/group/"> <i class="icon-group"></i><span class="label label-success">{{groupScore}}</span> Gruplar </a> </li>
+            </ul>
+        </div>
+        <!--End-Action boxes-->
+
+        <!--Chart-box-->
+        <div class="row-fluid">
+            <div class="widget-box">
+                <div class="widget-title bg_lg"><span class="icon"><i class="icon-signal"></i></span>
+                    <h5>İstatistikler</h5>
+                </div>
+                <div class="widget-content" >
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <ul class="site-stats">
+                                <li class="bg_lh"><i class="icon-group"></i> <strong>{{personScore}}</strong> <small>Kişi Sayısı</small></li>
+                                <li class="bg_lh"><i class="icon-phone"></i> <strong>{{phoneScore}}</strong> <small>Numara Sayısı </small></li>
+                                <li class="bg_lh"><i class="icon-phone-sign"></i> <strong>{{faxScore}}</strong> <small>Fax Numara Sayısı</small></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End-Chart-box-->
+        <hr/>
+    </div>
+</div>
+
+<!--end-main-container-part-->
